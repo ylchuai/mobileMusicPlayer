@@ -1,0 +1,141 @@
+@font-face {
+    font-family: 'iconfont';
+    src: url('../font/iconfont.eot');
+    src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'), /**/
+    url('../font/iconfont.woff') format('woff'), /**/
+    url('font/iconfont.ttf') format('truetype'), /**/
+    url('../font/iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    -moz-user-select: -moz-none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.pic div img {
+    animation: rotation 20s linear infinite;
+    -moz-animation: rotation 20s linear infinite;
+    -webkit-animation: rotation 20s linear infinite;
+    -o-animation: rotation 20s linear infinite;
+}
+
+body {
+    background: url(../image/bg.jpg);
+    overflow: hidden;
+    max-width: 768px;
+    height: 100%;
+}
+
+header {
+    /*margin: 0 auto;*/
+    padding-left: 1.2rem;
+    padding-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    /*text-align: center;*/
+}
+
+header .name {
+    line-height: 0.8rem;
+    font-size: 0.7rem;
+    color: #fff;
+}
+
+header .singer {
+    line-height: 0.5rem;
+    font-size: 0.4rem;
+    color: #aaa;
+}
+
+header.title {
+    background-color: rgba(70, 50, 0, 0.8);
+}
+
+.pic {
+    width: 6rem;
+    height: 6rem;
+    margin: auto;
+    border: 0.2rem solid #ccc;
+    border-radius: 3.5rem;
+}
+
+.pic div {
+    width: 5.6rem;
+    height: 5.6rem;
+    /*background: #fff;*/
+    /*margin-top: 0.3rem;
+    margin-left: 0.3rem;*/
+    border-radius: 3rem;
+}
+
+.pic div img {
+    width: 3.4rem;
+    height: 3.4rem;
+    border: 1.33rem solid #222;
+    /*margin-top: 0.8em;
+    margin-left: 0.8rem;*/
+    border-radius: 3rem
+}
+
+.progress {
+    width: 7rem;
+    height: 0.1rem;
+    background: #3e2d63;
+    margin: 1.8rem auto 0;
+}
+
+.progress .bar {
+    width: 0;
+    height: 0.1rem;
+    background: #0f9;
+}
+
+.progress .btn {
+    width: 0.2rem;
+    height: 0.2rem;
+    background: #fff;
+    transform: translateY(-0.15rem);
+}
+
+.control {
+    margin: 0 auto;
+    text-align: center;
+    bottom: 0.2rem;
+}
+
+.control .control-btn {
+    display: inline-block;
+    font-size: 1.4rem;
+    margin: 0.5rem 0.1rem 0;
+}
+
+.control .mid {
+    display: inline-block;
+    font-size: 1.6rem;
+    margin: 0.6rem 0.1rem 0;
+}
