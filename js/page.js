@@ -199,14 +199,14 @@ function init() {
                 progress_event: {
                     progress_click: function(e) {
                         e = e || window.event;
-                        var playTime = (e.x - progress_left) / progress.offsetWidth * event.music_duration;
+                        var playTime = (e.touches[0].clientX - progress_left) / progress.offsetWidth * event.music_duration;
                         playTime = parseInt(playTime / 5) * 5;
                         music.currentTime = playTime;
 
                         if (is_first_click) {
                             function proClick() {
-                                console.log(e.x - progress_left);
-                                var playTime = (e.x - progress_left) / progress.offsetWidth * event.music_duration;
+                                console.log(e.touches[0].clientX - progress_left);
+                                var playTime = (e.touches[0].clientX - progress_left) / progress.offsetWidth * event.music_duration;
                                 playTime = parseInt(playTime / 5) * 5;
                                 music.currentTime = playTime;
                             }
@@ -214,6 +214,36 @@ function init() {
                             setTimeout(function() {
                                 proClick();
                                 proClick = null;
+                                is_first_click = false;
+                            }, 0);
+                        }
+                        event.btn_event.btn_touchmove(e);
+                    },
+                    progress_touchmove: function(e) {
+                        e = e || window.event;
+                        is_drag = true;
+                        var left = e.touches[0].clientX - progress_left;
+                        progressBtn.style['margin-left'] = left + 'px';
+                        progressBar.style.width = left + 'px';
+                    },
+                    progress_touchend: function(e) {
+                        e = e || window.event;
+                        music.currentTime = (progressBtn.offsetLeft - btn_left) /
+                            progress.offsetWidth * event.music_duration;
+                        is_drag = false;
+                        if (is_first_click) {
+                            var left = progressBtn.offsetLeft;
+
+                            function btnTouch() {
+                                console.log(left - btn_left);
+                                music.currentTime = (left - btn_left) /
+                                    progress.offsetWidth * event.music_duration;
+                                is_drag = false;
+                            }
+                            btnTouch();
+                            setTimeout(function() {
+                                btnTouch();
+                                btnTouch = null;
                                 is_first_click = false;
                             }, 0);
                         }
@@ -282,7 +312,6 @@ function init() {
         name.innerHTML = musicInfo.name;
         singer.innerHTML = musicInfo.singer;
         music.setAttribute('controls', 'controls'); //controls="controls"
-        music.volume = 0.3;
         music.addEventListener('loadedmetadata', function() {
             if (is_init) return;
             is_init = true;
@@ -295,19 +324,22 @@ function init() {
                 music.addEventListener('ended', event.music_event.mus_ended);
                 progressBtn.addEventListener('touchmove', event.btn_event.btn_touchmove);
                 progressBtn.addEventListener('touchend', event.btn_event.btn_touchend);
-                progress.addEventListener('click', event.progress_event.progress_click);
+                progress.addEventListener('touchstart', event.progress_event.progress_click);
+                progress.addEventListener('touchmove', event.progress_event.progress_touchmove);
+                progress.addEventListener('touchend', event.progress_event.progress_touchend);
                 playNext.addEventListener('click', event.music_event.mus_playNext);
                 playPrevious.addEventListener('click', event.music_event.mus_playPrevious);
+                // progress.addEventListener('touchstart', function() { alert(1) });
 
             }, 100);
         });
     }
     musicInit();
 
-    function cssInit() {
-        control.style['margin-top'] = (document.body.offsetHeight - control.offsetTop - control.offsetHeight - 20) + 'px';
-    }
-    cssInit();
+    // function cssInit() {
+    //     control.style['margin-top'] = (document.body.offsetHeight - control.offsetTop - control.offsetHeight - 20) + 'px';
+    // }
+    // cssInit();
 }
 
 function getSrc(rule) {

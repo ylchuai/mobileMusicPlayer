@@ -61,6 +61,13 @@ body {
     height: 100%;
 }
 
+@media screen and (min-width:768px) {
+    body {
+        background-repeat: no-repeat;
+        background-size: 768px;
+    }
+}
+
 header {
     /*margin: 0 auto;*/
     padding-left: 1.2rem;
@@ -113,22 +120,23 @@ header.title {
 
 .progress {
     width: 7rem;
-    height: 0.1rem;
+    height: 0.3rem;
     background: #3e2d63;
     margin: 1.8rem auto 0;
+    z-index: 10;
 }
 
 .progress .bar {
     width: 0;
-    height: 0.1rem;
+    height: 0.3rem;
     background: #0f9;
 }
 
 .progress .btn {
     width: 0.2rem;
-    height: 0.2rem;
+    height: 0.4rem;
     background: #fff;
-    transform: translateY(-0.15rem);
+    transform: translateY(-0.35rem);
 }
 
 .control {
